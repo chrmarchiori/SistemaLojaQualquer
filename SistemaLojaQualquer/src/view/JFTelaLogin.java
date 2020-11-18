@@ -1,4 +1,4 @@
-package principal;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -27,8 +27,9 @@ import java.awt.Button;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
+import java.awt.Window.Type;
 
-public class JfTelaLogin extends JFrame {
+public class JFTelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -41,7 +42,7 @@ public class JfTelaLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JfTelaLogin frame = new JfTelaLogin();
+					JFTelaLogin frame = new JFTelaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +54,9 @@ public class JfTelaLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JfTelaLogin() {
+	public JFTelaLogin() {
+		setResizable(false);
+		setType(Type.UTILITY);
 		setTitle("Sistema Loja Qualquer");
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,17 +120,10 @@ public class JfTelaLogin extends JFrame {
 		psfSenha.setBounds(64, 207, 228, 32);
 		panel_1.add(psfSenha);
 		
-		JCheckBox ckUsuarioAdm = new JCheckBox("Administrador");
-		ckUsuarioAdm.setHorizontalAlignment(SwingConstants.LEFT);
-		ckUsuarioAdm.setBackground(Color.WHITE);
-		ckUsuarioAdm.setFont(new Font("Arial", Font.PLAIN, 12));
-		ckUsuarioAdm.setBounds(64, 246, 101, 17);
-		panel_1.add(ckUsuarioAdm);
-		
 		JButton btnTrocarSenha = new JButton("Trocar Senha");
 		btnTrocarSenha.setBackground(Color.WHITE);
 		btnTrocarSenha.setFont(new Font("Arial", Font.PLAIN, 11));
-		btnTrocarSenha.setBounds(191, 243, 101, 23);
+		btnTrocarSenha.setBounds(64, 248, 101, 23);
 		panel_1.add(btnTrocarSenha);
 		
 		JButton btnLogin = new JButton("Login");
