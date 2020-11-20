@@ -38,7 +38,7 @@ public class JFTelaLogin extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void run() {
+	public void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
