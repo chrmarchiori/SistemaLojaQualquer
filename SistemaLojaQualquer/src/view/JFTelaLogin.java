@@ -25,14 +25,23 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.Button;
 import javax.swing.border.SoftBevelBorder;
+
+import DAO.UsuarioDAO;
+import DAO.UsuarioDAOImpl;
+import controller.UsuarioController;
+import model.Usuario;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import java.awt.Window.Type;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 public class JFTelaLogin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField edtUsuario;
 	private JPasswordField psfSenha;
 
 	/**
@@ -40,7 +49,7 @@ public class JFTelaLogin extends JFrame {
 	 */
 	public void run() {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run() { 
 				try {
 					JFTelaLogin frame = new JFTelaLogin();
 					frame.setVisible(true);
@@ -49,6 +58,19 @@ public class JFTelaLogin extends JFrame {
 				}
 			}
 		});
+	}
+	
+	private boolean ExecutarLogin(String usuarioLogin, char[] senha) throws ClassNotFoundException, SQLException {
+		Usuario usuario = new Usuario();
+		UsuarioDAOImpl dao = new UsuarioDAOImpl();
+		UsuarioController controller = new UsuarioController(usuario, this, dao);
+		
+		usuario = controller.BuscaUsuario(usuarioLogin, senha);
+		
+		if(usuario.getIdUsuario() > 0)
+			return true;
+		
+		return false;		
 	}
 
 	/**
@@ -102,12 +124,12 @@ public class JFTelaLogin extends JFrame {
 		lblNewLabel_2.setBounds(64, 107, 84, 17);
 		panel_1.add(lblNewLabel_2);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 14));
-		textField.setHorizontalAlignment(SwingConstants.LEFT);
-		textField.setBounds(64, 125, 228, 32);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		edtUsuario = new JTextField();
+		edtUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
+		edtUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		edtUsuario.setBounds(64, 125, 228, 32);
+		panel_1.add(edtUsuario);
+		edtUsuario.setColumns(10);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Senha");
 		lblNewLabel_2_1.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -127,9 +149,28 @@ public class JFTelaLogin extends JFrame {
 		panel_1.add(btnTrocarSenha);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					if(ExecutarLogin(edtUsuario.getText(), psfSenha.getPassword())) {
+						System.out.println("deu certo");
+					}
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 16));
 		btnLogin.setBackground(Color.WHITE);
 		btnLogin.setBounds(113, 296, 134, 47);
 		panel_1.add(btnLogin);
+		
 	}
 }

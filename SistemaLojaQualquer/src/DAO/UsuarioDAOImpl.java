@@ -37,7 +37,7 @@ public class UsuarioDAOImpl extends GenericDAO implements UsuarioDAO {
 		
 	}
 
-	public Usuario getUsuario(String usuarioLogin, String usuarioSenha) {
+	public Usuario getUsuario(String usuarioLogin, char usuarioSenha) {
 		PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    
@@ -45,7 +45,7 @@ public class UsuarioDAOImpl extends GenericDAO implements UsuarioDAO {
 	        String sql = "SELECT * " + "FROM usuario " + "WHERE usuarioLogin = ? AND usuarioSenha = ?";
 	        pstmt = connection.prepareStatement(sql);
 	        pstmt.setString(1, usuarioLogin); 
-	        pstmt.setString(2, usuarioSenha);
+	        pstmt.setString(2, Character.toString(usuarioSenha));
 	        rs = pstmt.executeQuery();
 	        
 	      if(rs.next()) {

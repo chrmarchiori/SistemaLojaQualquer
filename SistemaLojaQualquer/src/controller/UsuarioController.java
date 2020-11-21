@@ -2,15 +2,18 @@ package controller;
 
 import model.Usuario;
 import view.JFTelaLogin;
+import DAO.UsuarioDAO;
 
 public class UsuarioController {
 	
 	private Usuario model;
 	private JFTelaLogin view;
+	private UsuarioDAO dao;
 	  
-	public UsuarioController(Usuario model, JFTelaLogin view){
+	public UsuarioController(Usuario model, JFTelaLogin view, UsuarioDAO dao){
 		this.model = model;
 		this.view = view;
+		this.dao = dao;
 	} 
   
 	public int getIdUsuario(String nome){
@@ -43,6 +46,10 @@ public class UsuarioController {
 	
 	public void setUsuarioAdministrador(boolean usuarioAdministrador) {
 		model.setUsuarioAdministrador(usuarioAdministrador);
+	}
+	
+	public Usuario BuscaUsuario(String usuarioLogin, char[] senha) {
+		return dao.getUsuario(usuarioLogin, senha);
 	}
   
 }
