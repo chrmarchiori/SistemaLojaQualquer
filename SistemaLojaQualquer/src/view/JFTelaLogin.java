@@ -1,42 +1,26 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.UIManager;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.TextArea;
-import javax.swing.JEditorPane;
-import java.awt.Component;
-import javax.swing.Box;
-import java.awt.Canvas;
-import javax.swing.border.LineBorder;
-import java.awt.Panel;
-import javax.swing.JPasswordField;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-import java.awt.Button;
-import javax.swing.border.SoftBevelBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
-import DAO.UsuarioDAO;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+
 import DAO.UsuarioDAOImpl;
 import controller.UsuarioController;
 import model.Usuario;
-
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import java.awt.Window.Type;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
 
 public class JFTelaLogin extends JFrame {
 
@@ -44,12 +28,14 @@ public class JFTelaLogin extends JFrame {
 	private JTextField edtUsuario;
 	private JPasswordField psfSenha;
 
+	private Usuario usuario;
+
 	/**
 	 * Launch the application.
 	 */
 	public void run() {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() { 
+			public void run() {
 				try {
 					JFTelaLogin frame = new JFTelaLogin();
 					frame.setVisible(true);
@@ -59,18 +45,27 @@ public class JFTelaLogin extends JFrame {
 			}
 		});
 	}
-	
-	private boolean ExecutarLogin(String usuarioLogin, char[] senha) throws ClassNotFoundException, SQLException {
-		Usuario usuario = new Usuario();
+
+	private void ExecutarLogin(String usuarioLogin, char[] senha) throws ClassNotFoundException, SQLException {
+
 		UsuarioDAOImpl dao = new UsuarioDAOImpl();
-		UsuarioController controller = new UsuarioController(usuario, this, dao);
-		
-		usuario = controller.BuscaUsuario(usuarioLogin, senha);
-		
-		if(usuario.getIdUsuario() > 0)
-			return true;
-		
-		return false;		
+		UsuarioController controller = new UsuarioController(null, this, dao);
+
+		this.usuario = new Usuario();
+
+		this.usuario = controller.BuscaUsuario(usuarioLogin, senha);
+
+		if (this.usuario == null) {
+			JOptionPane.showMessageDialog(null, "Usuário não encontrado, Tente novamente!");
+			edtUsuario.setText("");
+			psfSenha.setText("");
+		} else if (this.usuario != null)
+			new JFMenuPrincipal().run();
+
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
 	/**
@@ -88,74 +83,72 @@ public class JFTelaLogin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new CompoundBorder());
 		panel.setBackground(Color.BLUE);
 		panel.setBounds(0, 0, 308, 376);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Sistema Loja Qualquer");
 		lblNewLabel.setBounds(51, 178, 206, 19);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 18));
 		panel.add(lblNewLabel);
-		
+
 		JLabel lblVerso = new JLabel("v1.0.1");
 		lblVerso.setForeground(Color.WHITE);
 		lblVerso.setFont(new Font("Arial", Font.BOLD, 12));
 		lblVerso.setBounds(61, 208, 177, 14);
 		panel.add(lblVerso);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(308, 0, 357, 376);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Ol\u00E1, fa\u00E7a seu login!");
 		lblNewLabel_1.setBounds(64, 36, 228, 32);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 25));
 		panel_1.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Usu\u00E1rio");
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblNewLabel_2.setBounds(64, 107, 84, 17);
 		panel_1.add(lblNewLabel_2);
-		
+
 		edtUsuario = new JTextField();
 		edtUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
 		edtUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		edtUsuario.setBounds(64, 125, 228, 32);
 		panel_1.add(edtUsuario);
 		edtUsuario.setColumns(10);
-		
+
 		JLabel lblNewLabel_2_1 = new JLabel("Senha");
 		lblNewLabel_2_1.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblNewLabel_2_1.setBounds(64, 190, 84, 17);
 		panel_1.add(lblNewLabel_2_1);
-		
+
 		psfSenha = new JPasswordField();
 		psfSenha.setFont(new Font("Arial", Font.PLAIN, 14));
 		psfSenha.setHorizontalAlignment(SwingConstants.LEFT);
 		psfSenha.setBounds(64, 207, 228, 32);
 		panel_1.add(psfSenha);
-		
+
 		JButton btnTrocarSenha = new JButton("Trocar Senha");
 		btnTrocarSenha.setBackground(Color.WHITE);
 		btnTrocarSenha.setFont(new Font("Arial", Font.PLAIN, 11));
 		btnTrocarSenha.setBounds(64, 248, 101, 23);
 		panel_1.add(btnTrocarSenha);
-		
+
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					if(ExecutarLogin(edtUsuario.getText(), psfSenha.getPassword())) {
-						System.out.println("deu certo");
-					}
+					ExecutarLogin(edtUsuario.getText(), psfSenha.getPassword());
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -163,14 +156,14 @@ public class JFTelaLogin extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
-		
+
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 16));
 		btnLogin.setBackground(Color.WHITE);
 		btnLogin.setBounds(113, 296, 134, 47);
 		panel_1.add(btnLogin);
-		
+
 	}
 }

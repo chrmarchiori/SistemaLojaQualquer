@@ -1,55 +1,56 @@
 package controller;
 
+import DAO.UsuarioDAO;
 import model.Usuario;
 import view.JFTelaLogin;
-import DAO.UsuarioDAO;
 
 public class UsuarioController {
-	
+
 	private Usuario model;
 	private JFTelaLogin view;
 	private UsuarioDAO dao;
-	  
-	public UsuarioController(Usuario model, JFTelaLogin view, UsuarioDAO dao){
+
+	public UsuarioController(Usuario model, JFTelaLogin view, UsuarioDAO dao) {
 		this.model = model;
 		this.view = view;
 		this.dao = dao;
-	} 
-  
-	public int getIdUsuario(String nome){
+	}
+
+	public int getIdUsuario(String nome) {
 		return model.getIdUsuario();
 	}
-	  
-	public void setIdUsuario(int idUsuario){
+
+	public void setIdUsuario(int idUsuario) {
 		model.setIdUsuario(idUsuario);
 	}
-	
+
 	public String getUsuarioLogin() {
 		return model.getUsuarioLogin();
 	}
-	  
+
 	public void setUsuarioLogin(String usuarioLogin) {
 		model.setUsuarioLogin(usuarioLogin);
 	}
-	
+
 	public String getUsuarioSenha() {
 		return model.getUsuarioSenha();
 	}
-	
+
 	public void setUsuarioSenha(String usuarioSenha) {
-		model.setUsuarioSenha(usuarioSenha);;
+		model.setUsuarioSenha(usuarioSenha);
+		;
 	}
-	
+
 	public boolean isUsuarioAdministrador() {
 		return model.isUsuarioAdministrador();
 	}
-	
+
 	public void setUsuarioAdministrador(boolean usuarioAdministrador) {
 		model.setUsuarioAdministrador(usuarioAdministrador);
 	}
-	
+
 	public Usuario BuscaUsuario(String usuarioLogin, char[] senha) {
 		return dao.getUsuario(usuarioLogin, senha);
 	}
-  
+
 }
