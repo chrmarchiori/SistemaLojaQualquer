@@ -59,8 +59,10 @@ public class JFTelaLogin extends JFrame {
 			JOptionPane.showMessageDialog(null, "Usuário não encontrado, Tente novamente!");
 			edtUsuario.setText("");
 			psfSenha.setText("");
-		} else if (this.usuario != null)
+		} else if (this.usuario != null) {
 			new JFMenuPrincipal().run();
+			this.dispose();
+		}
 
 	}
 
