@@ -27,6 +27,7 @@ public class JFTelaLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField edtUsuario;
 	private JPasswordField psfSenha;
+	private UsuarioController usuarioController;
 
 	private Usuario usuario;
 
@@ -48,21 +49,33 @@ public class JFTelaLogin extends JFrame {
 
 	private void ExecutarLogin(String usuarioLogin, char[] senha) throws ClassNotFoundException, SQLException {
 
-		UsuarioDAOImpl dao = new UsuarioDAOImpl();
-		UsuarioController controller = new UsuarioController(null, this, dao);
+		if (!usuarioLogin.equals("") && senha != null) {
+			Usuario usuarioModel = new Usuario();
+			usuarioModel.setUsuarioLogin(usuarioLogin);
+			String strPass = new String(senha).trim();
+			usuarioModel.setUsuarioSenha(strPass);
 
-		this.usuario = new Usuario();
+			UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
 
-		this.usuario = controller.BuscaUsuario(usuarioLogin, senha);
+			this.usuarioController = UsuarioController.getInstance();
 
-		if (this.usuario == null) {
-			JOptionPane.showMessageDialog(null, "Usuário não encontrado, Tente novamente!");
-			edtUsuario.setText("");
-			psfSenha.setText("");
-		} else if (this.usuario != null) {
-			new JFMenuPrincipal().run();
-			this.dispose();
-		}
+			this.usuarioController.iniciaDadosUsuario(usuarioModel, usuarioDAOImpl);
+
+			this.usuarioController.RealizaLogin(usuarioLogin, senha);
+
+			Usuario usuario = this.usuarioController.getUsuarioLogado();
+
+			if (usuario == null) {
+				JOptionPane.showMessageDialog(null, "Usuário não encontrado, Tente novamente!");
+				edtUsuario.setText("");
+				psfSenha.setText("");
+			} else {
+				new JFMenuPrincipal().run();
+				this.dispose();
+			}
+
+		} else
+			JOptionPane.showMessageDialog(null, "É necessário informar usuário e senha!");
 
 	}
 

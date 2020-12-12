@@ -2,18 +2,27 @@ package controller;
 
 import DAO.UsuarioDAO;
 import model.Usuario;
-import view.JFTelaLogin;
 
 public class UsuarioController {
 
-	private Usuario model;
-	private JFTelaLogin view;
-	private UsuarioDAO dao;
+	private static UsuarioController instance;
 
-	public UsuarioController(Usuario model, JFTelaLogin view, UsuarioDAO dao) {
+	private Usuario model;
+	private UsuarioDAO usuarioDAO;
+
+	private UsuarioController() {
+	}
+
+	public static UsuarioController getInstance() {
+		if (instance == null) {
+			instance = new UsuarioController();
+		}
+		return instance;
+	}
+
+	public void iniciaDadosUsuario(Usuario model, UsuarioDAO usuarioDAO) {
 		this.model = model;
-		this.view = view;
-		this.dao = dao;
+		this.usuarioDAO = usuarioDAO;
 	}
 
 	public int getIdUsuario(String nome) {
@@ -38,7 +47,6 @@ public class UsuarioController {
 
 	public void setUsuarioSenha(String usuarioSenha) {
 		model.setUsuarioSenha(usuarioSenha);
-		;
 	}
 
 	public boolean isUsuarioAdministrador() {
@@ -49,8 +57,12 @@ public class UsuarioController {
 		model.setUsuarioAdministrador(usuarioAdministrador);
 	}
 
-	public Usuario BuscaUsuario(String usuarioLogin, char[] senha) {
-		return dao.getUsuario(usuarioLogin, senha);
+	public void RealizaLogin(String usuarioLogin, char[] senha) {
+		this.model = usuarioDAO.getUsuario(usuarioLogin, senha);
+	}
+
+	public Usuario getUsuarioLogado() {
+		return this.model;
 	}
 
 }

@@ -42,6 +42,7 @@ public class JFMenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public JFMenuPrincipal() {
+		setTitle("Sistema Loja Qualquer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1124, 780);
 		contentPane = new JPanel();
@@ -50,25 +51,20 @@ public class JFMenuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 271, 741);
-		contentPane.add(panel);
-		panel.setLayout(null);
-
 		JButton btnUsuarios = new JButton("Usu\u00E1rios");
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
-		btnUsuarios.setFont(new Font("Arial", Font.BOLD, 16));
-		btnUsuarios.setToolTipText("");
-		btnUsuarios.setBackground(Color.WHITE);
-		btnUsuarios.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUsuarios.setIcon(new ImageIcon(JFMenuPrincipal.class.getResource("/assets/group (2).png")));
-		btnUsuarios.setBounds(23, 41, 188, 62);
-		panel.add(btnUsuarios);
+		btnUsuarios.setToolTipText("");
+		btnUsuarios.setHorizontalAlignment(SwingConstants.LEFT);
+		btnUsuarios.setFont(new Font("Arial", Font.BOLD, 16));
+		btnUsuarios.setBorderPainted(false);
+		btnUsuarios.setBackground(Color.WHITE);
+		btnUsuarios.setBounds(52, 26, 188, 62);
+		contentPane.add(btnUsuarios);
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
