@@ -12,12 +12,11 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class JFListaUsuarios extends JFrame {
+public class JFGEnerico extends JFrame {
 
 	private JPanel contentPane;
 	private final JScrollPane scrollPane = new JScrollPane();
 	private JTable table;
-	private DefaultTableModel model;
 
 	/**
 	 * Launch the application.
@@ -26,7 +25,7 @@ public class JFListaUsuarios extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFListaUsuarios frame = new JFListaUsuarios();
+					JFGEnerico frame = new JFGEnerico();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,8 +37,7 @@ public class JFListaUsuarios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFListaUsuarios() {
-		setTitle("Pesquisa de Usu\u00E1rios");
+	public JFGEnerico() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 891, 679);
 		contentPane = new JPanel();
@@ -53,9 +51,6 @@ public class JFListaUsuarios extends JFrame {
 		table.setModel(
 				new DefaultTableModel(new Object[][] {}, new String[] { "Id", "Login", "Senha", "Administrador" }));
 		table.getColumnModel().getColumn(3).setPreferredWidth(100);
-
-		model = (DefaultTableModel) table.getModel();
-
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
