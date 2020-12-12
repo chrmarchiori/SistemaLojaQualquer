@@ -20,7 +20,7 @@ public class JFCadastroUsuario extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,8 +37,8 @@ public class JFCadastroUsuario extends JFrame {
 	 * Create the frame.
 	 */
 	public JFCadastroUsuario() {
-		setTitle("Cadastro ");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Cadastro de Usu\u00E1rios");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 337, 349);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,7 +70,7 @@ public class JFCadastroUsuario extends JFrame {
 		panel.add(lblSenha);
 
 		JCheckBox ckUsuarioAdministrador = new JCheckBox("Administrador");
-		ckUsuarioAdministrador.setBounds(49, 171, 97, 23);
+		ckUsuarioAdministrador.setBounds(49, 171, 110, 23);
 		panel.add(ckUsuarioAdministrador);
 
 		JButton btnSalvar = new JButton("Salvar");

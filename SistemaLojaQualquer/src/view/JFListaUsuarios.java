@@ -3,6 +3,9 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,17 +15,21 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controller.UsuarioController;
+import model.Usuario;
+
 public class JFListaUsuarios extends JFrame {
 
 	private JPanel contentPane;
 	private final JScrollPane scrollPane = new JScrollPane();
 	private JTable table;
 	private DefaultTableModel model;
+	private UsuarioController usuarioController;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,12 +42,26 @@ public class JFListaUsuarios extends JFrame {
 		});
 	}
 
+	private void PesquisarUsuarios() {
+		this.usuarioController = usuarioController.getInstance();
+
+		List<Usuario> lista = this.usuarioController.getAllUsuarios();
+
+		model.setNumRows(0);
+
+		for (Usuario u : lista) {
+			model.addRow(new Object[] { u.getIdUsuario(), u.getUsuarioLogin(), u.getUsuarioSenha(),
+					u.isUsuarioAdministrador() });
+		}
+
+	}
+
 	/**
 	 * Create the frame.
 	 */
 	public JFListaUsuarios() {
 		setTitle("Pesquisa de Usu\u00E1rios");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 891, 679);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,17 +85,29 @@ public class JFListaUsuarios extends JFrame {
 		panel.setLayout(null);
 
 		JButton btnInserir = new JButton("Inserir");
-		btnInserir.setBackground(Color.WHITE);
+		btnInserir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new JFCadastroUsuario().run();
+			}
+		});
+		btnInserir.setBackground(Color.LIGHT_GRAY);
 		btnInserir.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnInserir.setBounds(10, 11, 104, 38);
 		panel.add(btnInserir);
 
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.setBackground(Color.LIGHT_GRAY);
 		btnEditar.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnEditar.setBounds(124, 11, 104, 38);
 		panel.add(btnEditar);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PesquisarUsuarios();
+			}
+		});
+		btnPesquisar.setBackground(Color.LIGHT_GRAY);
 		btnPesquisar.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnPesquisar.setBounds(238, 11, 104, 38);
 		panel.add(btnPesquisar);

@@ -54,7 +54,7 @@ public class JFMenuPrincipal extends JFrame {
 		JButton btnUsuarios = new JButton("Usu\u00E1rios");
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				new JFListaUsuarios().run();
 			}
 		});
 		btnUsuarios.setIcon(new ImageIcon(JFMenuPrincipal.class.getResource("/assets/group (2).png")));

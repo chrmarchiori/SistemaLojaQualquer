@@ -32,7 +32,7 @@ public class UsuarioDAOImpl extends GenericDAO implements UsuarioDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(connection);
+			// close(connection);
 		}
 
 	}
@@ -63,7 +63,7 @@ public class UsuarioDAOImpl extends GenericDAO implements UsuarioDAO {
 			return null;
 		} finally {
 			close(rs);
-			close(connection);
+			// close(connection);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class UsuarioDAOImpl extends GenericDAO implements UsuarioDAO {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 
 		try {
-			String sql = "SELECT * " + "FROM CAD_ESTUDANTES";
+			String sql = "SELECT * " + "FROM usuario";
 			pstmt = connection.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -93,7 +93,7 @@ public class UsuarioDAOImpl extends GenericDAO implements UsuarioDAO {
 			return null;
 		} finally {
 			close(rs);
-			close(connection);
+			// close(connection);
 		}
 
 	}

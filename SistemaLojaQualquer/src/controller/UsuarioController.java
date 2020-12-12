@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import DAO.UsuarioDAO;
 import model.Usuario;
 
@@ -63,6 +65,10 @@ public class UsuarioController {
 
 	public Usuario getUsuarioLogado() {
 		return this.model;
+	}
+
+	public List<Usuario> getAllUsuarios() {
+		return usuarioDAO.getAllUsuarios();
 	}
 
 }
