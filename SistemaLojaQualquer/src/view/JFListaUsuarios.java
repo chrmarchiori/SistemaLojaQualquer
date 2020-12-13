@@ -103,7 +103,9 @@ public class JFListaUsuarios extends JFrame {
 		JButton btnInserir = new JButton("Inserir");
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new JFCadastroUsuario().run();
+				JFCadastroUsuario JFCadastroUsuario = new JFCadastroUsuario();
+				JFCadastroUsuario.run();
+				JFCadastroUsuario.setVisible(true);
 			}
 		});
 		btnInserir.setBackground(Color.LIGHT_GRAY);

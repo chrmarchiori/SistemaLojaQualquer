@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.UsuarioController;
 import model.Usuario;
 
 public class JFCadastroUsuario extends JFrame {
@@ -39,7 +40,6 @@ public class JFCadastroUsuario extends JFrame {
 
 	public void Editar(Usuario usuario) {
 		edUsuarioLogin.setText(usuario.getUsuarioLogin());
-		edUsuarioLogin.repaint();
 		this.setVisible(true);
 	}
 
@@ -88,6 +88,22 @@ public class JFCadastroUsuario extends JFrame {
 		panel.add(ckUsuarioAdministrador);
 
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Usuario usuario = new Usuario();
+				usuario.setIdUsuario(-1);
+				usuario.setUsuarioLogin(edUsuarioLogin.getText());
+				String strPass = new String(pfUsuarioSenha.getPassword()).trim();
+				usuario.setUsuarioSenha(strPass);
+				usuario.setUsuarioAdministrador(ckUsuarioAdministrador.isSelected());
+
+				UsuarioController usuarioController = UsuarioController.getInstance();
+
+				usuarioController.saveOrUpdate(usuario);
+
+				dispose();
+			}
+		});
 		btnSalvar.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnSalvar.setBounds(49, 249, 101, 37);
 		contentPane.add(btnSalvar);

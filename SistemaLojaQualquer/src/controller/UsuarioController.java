@@ -76,4 +76,12 @@ public class UsuarioController {
 		return usuarioDAO.getUsuario(usuarioLogin, senha);
 	}
 
+	public void saveOrUpdate(Usuario usuario) {
+		Integer idUsuario = usuario.getIdUsuario();
+		if (idUsuario == -1) {
+			usuarioDAO.SalvarUsuario(usuario);
+		} else
+			usuarioDAO.EditarUsuario(usuario);
+	}
+
 }
