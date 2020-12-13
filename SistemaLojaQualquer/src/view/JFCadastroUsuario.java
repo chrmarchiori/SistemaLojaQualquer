@@ -2,6 +2,8 @@ package view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -11,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import model.Usuario;
 
 public class JFCadastroUsuario extends JFrame {
 
@@ -33,6 +37,10 @@ public class JFCadastroUsuario extends JFrame {
 		});
 	}
 
+	public void Editar(Usuario usuario) {
+		edUsuarioLogin.setText(usuario.getUsuarioLogin());
+	}
+
 	/**
 	 * Create the frame.
 	 */
@@ -51,6 +59,10 @@ public class JFCadastroUsuario extends JFrame {
 		panel.setLayout(null);
 
 		edUsuarioLogin = new JTextField();
+		edUsuarioLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		edUsuarioLogin.setBounds(49, 41, 223, 31);
 		panel.add(edUsuarioLogin);
 		edUsuarioLogin.setColumns(10);
