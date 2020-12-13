@@ -25,13 +25,20 @@ public class JFCadastroCliente extends JFrame {
 
 	/**
 	 * Launch the application.
+<<<<<<< HEAD
+	 **/
+=======
 	**/
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 	public void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					JFCadastroCliente frame = new JFCadastroCliente();
+<<<<<<< HEAD
+=======
 					frame.setVisible(true);
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,12 +46,20 @@ public class JFCadastroCliente extends JFrame {
 		});
 	}
 
+<<<<<<< HEAD
+	public void editar(Cliente cliente) {
+		nomeCliente.setText(cliente.getNome());
+		enderecoCliente.setText(cliente.getEndereco());
+		idadeCliente.setText(cliente.getIdade().toString());
+		this.setVisible(true);
+=======
 	public void editar(Cliente cliente ) {
 		System.out.println(cliente.getNome());
 		nomeCliente.setText(cliente.getNome());
 		enderecoCliente.setText(cliente.getEndereco());
 		idadeCliente.setText(cliente.getIdade().toString());
 		nomeCliente.setText("joao");
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 	}
 
 	/**
@@ -87,11 +102,19 @@ public class JFCadastroCliente extends JFrame {
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblSenha.setBounds(49, 93, 96, 20);
 		panel.add(lblSenha);
+<<<<<<< HEAD
+
+		idadeCliente = new JTextField();
+		idadeCliente.setBounds(49, 197, 223, 31);
+		panel.add(idadeCliente);
+
+=======
 		
 		idadeCliente = new JTextField();
 		idadeCliente.setBounds(49, 197, 223, 31);
 		panel.add(idadeCliente);
 		
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 		JLabel lblIdade = new JLabel("Idade");
 		lblIdade.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblIdade.setBounds(49, 175, 96, 20);
