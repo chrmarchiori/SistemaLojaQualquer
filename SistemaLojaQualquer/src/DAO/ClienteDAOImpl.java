@@ -86,6 +86,7 @@ public class ClienteDAOImpl extends GenericDAO implements ClienteDAO {
 
 			if (rs.next()) {
 				Cliente cliente = new Cliente();
+				cliente.setIdCliente(rs.getInt("idCliente"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setIdade(rs.getInt("idade"));
 				cliente.setEndereco(rs.getString("endereco"));
