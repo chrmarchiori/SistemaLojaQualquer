@@ -57,14 +57,24 @@ public class JFMenuPrincipal extends JFrame {
 				new JFListaUsuarios().run();
 			}
 		});
-		btnUsuarios.setIcon(new ImageIcon(JFMenuPrincipal.class.getResource("/assets/group (2).png")));
 		btnUsuarios.setToolTipText("");
-		btnUsuarios.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUsuarios.setFont(new Font("Arial", Font.BOLD, 16));
 		btnUsuarios.setBorderPainted(false);
 		btnUsuarios.setBackground(Color.WHITE);
 		btnUsuarios.setBounds(52, 26, 188, 62);
 		contentPane.add(btnUsuarios);
+		
+		JButton btnClientes = new JButton("Clientes");
+		btnClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnClientes.setToolTipText("");
+		btnClientes.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnClientes.setBorderPainted(false);
+		btnClientes.setBackground(Color.WHITE);
+		btnClientes.setBounds(52, 105, 188, 62);
+		contentPane.add(btnClientes);
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

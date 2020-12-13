@@ -19,7 +19,7 @@ public class JFCadastroUsuario extends JFrame {
 
 	/**
 	 * Launch the application.
-	 */
+	**/
 	public void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

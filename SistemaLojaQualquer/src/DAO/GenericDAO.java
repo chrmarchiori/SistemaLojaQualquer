@@ -9,16 +9,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GenericDAO {
+	
+	static String USER = "root";
+	static String PASSWORD = "root";
+	
     protected Connection getConnection() throws SQLException {
         String urlJDBC = "jdbc:mysql://localhost:3306/";
-        Connection connection = DriverManager.getConnection(urlJDBC, "SYSDBA", "masterkey");
+        Connection connection = DriverManager.getConnection(urlJDBC, USER, PASSWORD);
         return connection;
     }
 
     protected Connection getConnection(String database) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
         String urlJDBC = "jdbc:mysql://localhost:3306/" + database;
-        Connection connection = DriverManager.getConnection(urlJDBC, "SYSDBA", "masterkey");
+        Connection connection = DriverManager.getConnection(urlJDBC, USER, PASSWORD);
         return connection;
     }
 
