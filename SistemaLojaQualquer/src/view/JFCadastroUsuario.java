@@ -23,13 +23,13 @@ public class JFCadastroUsuario extends JFrame {
 
 	/**
 	 * Launch the application.
-	 */
+	 **/
 	public void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					JFCadastroUsuario frame = new JFCadastroUsuario();
-					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,6 +39,8 @@ public class JFCadastroUsuario extends JFrame {
 
 	public void Editar(Usuario usuario) {
 		edUsuarioLogin.setText(usuario.getUsuarioLogin());
+		edUsuarioLogin.repaint();
+		this.setVisible(true);
 	}
 
 	/**

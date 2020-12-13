@@ -3,52 +3,55 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GenericDAO {
-    protected Connection getConnection() throws SQLException {
-        String urlJDBC = "jdbc:mysql://localhost:3306/";
-        Connection connection = DriverManager.getConnection(urlJDBC, "SYSDBA", "masterkey");
-        return connection;
-    }
 
-    protected Connection getConnection(String database) throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
-        String urlJDBC = "jdbc:mysql://localhost:3306/" + database;
-        Connection connection = DriverManager.getConnection(urlJDBC, "SYSDBA", "masterkey");
-        return connection;
-    }
+	static String USER = "SYSDBA";
+	static String PASSWORD = "masterkey";
 
-    protected void close(ResultSet rs) {
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+	protected Connection getConnection() throws SQLException {
+		String urlJDBC = "jdbc:mysql://localhost:3306/";
+		Connection connection = DriverManager.getConnection(urlJDBC, USER, PASSWORD);
+		return connection;
+	}
 
-    protected void close(PreparedStatement pstmt) {
-        if (pstmt != null) {
-            try {
-                pstmt.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+	protected Connection getConnection(String database) throws SQLException, ClassNotFoundException {
+		Class.forName("com.mysql.jdbc.Driver");
+		String urlJDBC = "jdbc:mysql://localhost:3306/" + database;
+		Connection connection = DriverManager.getConnection(urlJDBC, USER, PASSWORD);
+		return connection;
+	}
 
-    protected void close(Connection connection) {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+	protected void close(ResultSet rs) {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	protected void close(PreparedStatement pstmt) {
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	protected void close(Connection connection) {
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
