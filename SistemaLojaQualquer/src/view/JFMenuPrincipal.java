@@ -67,6 +67,7 @@ public class JFMenuPrincipal extends JFrame {
 		JButton btnClientes = new JButton("Clientes");
 		btnClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new JFListaClientes().run();
 			}
 		});
 		btnClientes.setToolTipText("");

@@ -36,6 +36,43 @@ public class ClienteDAOImpl extends GenericDAO implements ClienteDAO {
 		}
 
 	}
+	
+	public void editarCliente(Cliente cliente) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "UPDATE cliente SET nome = ?, endereco = ?, idade = ? WHERE idCliente = ?";
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, cliente.getNome());
+			pstmt.setString(2, cliente.getEndereco());
+			pstmt.setInt(3, cliente.getIdade());
+			pstmt.setInt(4, cliente.getIdCliente());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// close(connection);
+		}
+
+	}
+	
+	public void deleteCliente(Integer idCliente) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "DELETE FROM cliente WHERE idCliente = ?";
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, idCliente);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// close(connection);
+		}
+
+	}
 
 	public Cliente getClienteById(Integer idCliente) {
 		PreparedStatement pstmt = null;
@@ -72,7 +109,7 @@ public class ClienteDAOImpl extends GenericDAO implements ClienteDAO {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 
 		try {
-			String sql = "SELECT * " + "FROM usuario";
+			String sql = "SELECT * " + "FROM cliente";
 			pstmt = connection.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
