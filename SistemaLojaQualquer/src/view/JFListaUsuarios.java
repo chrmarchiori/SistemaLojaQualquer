@@ -56,6 +56,22 @@ public class JFListaUsuarios extends JFrame {
 
 	}
 
+	private Usuario PreencherUsuario() {
+
+		if (table.getSelectionModel().isSelectionEmpty()) {
+			return null;
+		}
+
+		int row = table.getSelectedRow();
+		String usuarioLogin = table.getModel().getValueAt(row, 1).toString();
+		String usuarioSenha = table.getModel().getValueAt(row, 2).toString();
+
+		Usuario usuario = usuarioController.getUsuarioByLoginPassword(usuarioLogin, usuarioSenha);
+
+		return usuario;
+
+	}
+
 	/**
 	 * Create the frame.
 	 */
@@ -96,6 +112,20 @@ public class JFListaUsuarios extends JFrame {
 		panel.add(btnInserir);
 
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				JFCadastroUsuario JFCadastroUsuario = new JFCadastroUsuario();
+
+				Usuario usuario = PreencherUsuario();
+
+				if (usuario != null) {
+					JFCadastroUsuario.run();
+					JFCadastroUsuario.Editar(usuario);
+				}
+
+			}
+		});
 		btnEditar.setBackground(Color.LIGHT_GRAY);
 		btnEditar.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnEditar.setBounds(124, 11, 104, 38);

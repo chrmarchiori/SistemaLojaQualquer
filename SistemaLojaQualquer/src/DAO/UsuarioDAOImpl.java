@@ -37,7 +37,7 @@ public class UsuarioDAOImpl extends GenericDAO implements UsuarioDAO {
 
 	}
 
-	public Usuario getUsuario(String usuarioLogin, char[] usuarioSenha) {
+	public Usuario getUsuario(String usuarioLogin, String usuarioSenha) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String strPass = new String(usuarioSenha).trim();
@@ -93,6 +93,26 @@ public class UsuarioDAOImpl extends GenericDAO implements UsuarioDAO {
 			return null;
 		} finally {
 			close(rs);
+			// close(connection);
+		}
+
+	}
+
+	public void EditarUsuario(Usuario usuario) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "Update usuario Set usuarioLogin = ?, usuarioSenha = ?, usuarioAdministrador = ? Where idUsuario = ?";
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, usuario.getUsuarioLogin());
+			pstmt.setString(2, usuario.getUsuarioSenha());
+			pstmt.setBoolean(3, usuario.isUsuarioAdministrador());
+			pstmt.setInt(4, usuario.getIdUsuario());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 			// close(connection);
 		}
 

@@ -60,7 +60,8 @@ public class UsuarioController {
 	}
 
 	public void RealizaLogin(String usuarioLogin, char[] senha) {
-		this.model = usuarioDAO.getUsuario(usuarioLogin, senha);
+		String strPass = new String(senha).trim();
+		this.model = usuarioDAO.getUsuario(usuarioLogin, strPass);
 	}
 
 	public Usuario getUsuarioLogado() {
@@ -69,6 +70,10 @@ public class UsuarioController {
 
 	public List<Usuario> getAllUsuarios() {
 		return usuarioDAO.getAllUsuarios();
+	}
+
+	public Usuario getUsuarioByLoginPassword(String usuarioLogin, String senha) {
+		return usuarioDAO.getUsuario(usuarioLogin, senha);
 	}
 
 }
