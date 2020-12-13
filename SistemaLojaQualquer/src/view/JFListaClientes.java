@@ -125,11 +125,10 @@ public class JFListaClientes extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Cliente cliente = preencherCliente();
-				System.out.println(cliente.getNome());
+				JFCadastroCliente JFCadastroCliente = new JFCadastroCliente();
 
 				if (cliente != null) {
-					new JFCadastroCliente().run();
-					new JFCadastroCliente().editar(cliente);
+					JFCadastroCliente.editar(cliente);
 				}
 
 			}

@@ -22,6 +22,7 @@ public class JFCadastroCliente extends JFrame {
 	private JTextField enderecoCliente;
 	private JTextField idadeCliente;
 	private ClienteController clienteController;
+	private Cliente clienteEditar;
 
 	/**
 	 * Launch the application.
@@ -43,6 +44,7 @@ public class JFCadastroCliente extends JFrame {
 		nomeCliente.setText(cliente.getNome());
 		enderecoCliente.setText(cliente.getEndereco());
 		idadeCliente.setText(cliente.getIdade().toString());
+		this.clienteEditar = cliente;
 		this.setVisible(true);
 	}
 
@@ -104,6 +106,9 @@ public class JFCadastroCliente extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente cliente = new Cliente();
+				if (clienteEditar != null) {
+					cliente.setIdCliente(clienteEditar .getIdCliente());
+				}
 				cliente.setNome(nomeCliente.getText());
 				cliente.setEndereco(enderecoCliente.getText());
 				cliente.setIdade(Integer.parseInt(idadeCliente.getText()));
