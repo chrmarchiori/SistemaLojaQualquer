@@ -51,11 +51,20 @@ public class JFListaClientes extends JFrame {
 		model.setNumRows(0);
 
 		for (Cliente u : lista) {
+<<<<<<< HEAD
 			model.addRow(new Object[] { u.getIdCliente(), u.getNome(), u.getEndereco(), u.getIdade() });
 		}
 
 	}
 
+=======
+			model.addRow(new Object[] { u.getIdCliente(), u.getNome(), u.getEndereco(),
+					u.getIdade() });
+		}
+
+	}
+	
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 	public void atualizar() {
 		try {
 			this.pesquisarClientes();
@@ -78,7 +87,11 @@ public class JFListaClientes extends JFrame {
 		Integer idCliente = (Integer) table.getModel().getValueAt(row, 0);
 
 		Cliente cliente = clienteController.findClienteById(idCliente);
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 		return cliente;
 
 	}
@@ -98,7 +111,12 @@ public class JFListaClientes extends JFrame {
 		contentPane.add(scrollPane);
 
 		table = new JTable();
+<<<<<<< HEAD
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Id", "Nome", "Endereço", "Idade" }));
+=======
+		table.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Id", "Nome", "Endereço", "Idade" }));
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 		table.getColumnModel().getColumn(2).setPreferredWidth(100);
 
 		model = (DefaultTableModel) table.getModel();
@@ -113,9 +131,13 @@ public class JFListaClientes extends JFrame {
 		JButton btnInserir = new JButton("Inserir");
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				JFCadastroCliente JFCadastroCliente = new JFCadastroCliente();
 				JFCadastroCliente.run();
 				JFCadastroCliente.setVisible(true);
+=======
+				new JFCadastroCliente().run();
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 			}
 		});
 		btnInserir.setBackground(Color.LIGHT_GRAY);
@@ -152,7 +174,11 @@ public class JFListaClientes extends JFrame {
 
 				int row = table.getSelectedRow();
 				Integer idCliente = (Integer) table.getModel().getValueAt(row, 0);
+<<<<<<< HEAD
 
+=======
+				
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 				if (idCliente != null) {
 					clienteController.deleteCliente(idCliente);
 					atualizar();
@@ -163,7 +189,11 @@ public class JFListaClientes extends JFrame {
 		btnPesquisar.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnPesquisar.setBounds(238, 11, 104, 38);
 		panel.add(btnPesquisar);
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 		this.atualizar();
 	}
 }

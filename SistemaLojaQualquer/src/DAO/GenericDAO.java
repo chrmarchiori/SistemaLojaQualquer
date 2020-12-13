@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GenericDAO {
+<<<<<<< HEAD
 
 	static String USER = "SYSDBA";
 	static String PASSWORD = "masterkey";
@@ -54,4 +55,52 @@ public class GenericDAO {
 			}
 		}
 	}
+=======
+	
+	static String USER = "root";
+	static String PASSWORD = "root";
+	
+    protected Connection getConnection() throws SQLException {
+        String urlJDBC = "jdbc:mysql://localhost:3306/";
+        Connection connection = DriverManager.getConnection(urlJDBC, USER, PASSWORD);
+        return connection;
+    }
+
+    protected Connection getConnection(String database) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+        String urlJDBC = "jdbc:mysql://localhost:3306/" + database;
+        Connection connection = DriverManager.getConnection(urlJDBC, USER, PASSWORD);
+        return connection;
+    }
+
+    protected void close(ResultSet rs) {
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected void close(PreparedStatement pstmt) {
+        if (pstmt != null) {
+            try {
+                pstmt.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected void close(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+>>>>>>> 08f1827399fc238f1df5c93452435f5c27911aa9
 }
