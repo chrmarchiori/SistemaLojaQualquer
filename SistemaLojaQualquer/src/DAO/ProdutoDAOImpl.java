@@ -22,13 +22,14 @@ public class ProdutoDAOImpl extends GenericDAO implements ProdutoDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO produto (nome, descricao, codigo, quantidade)"
-					+ "VALUES(?, ?, ?)";
+			String sql = "INSERT INTO produto (nome, descricao, codigo, quantidade, valor)"
+					+ "VALUES(?, ?, ?, ?, ?)";
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, produto.getNome());
 			pstmt.setString(2, produto.getDescricao());
 			pstmt.setString(3, produto.getCodigo());
 			pstmt.setInt(4, produto.getQuantidade());
+			pstmt.setFloat(5, produto.getValor());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,13 +44,14 @@ public class ProdutoDAOImpl extends GenericDAO implements ProdutoDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "UPDATE produto SET nome = ?, descricao = ?, codigo = ?, quantidade = ? WHERE idProduto = ?";
+			String sql = "UPDATE produto SET nome = ?, descricao = ?, codigo = ?, quantidade = ?, valor = ? WHERE idProduto = ?";
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, produto.getNome());
 			pstmt.setString(2, produto.getDescricao());
 			pstmt.setString(3, produto.getCodigo());
 			pstmt.setInt(4, produto.getQuantidade());
-			pstmt.setInt(5, produto.getIdProduto());
+			pstmt.setFloat(5, produto.getValor());
+			pstmt.setInt(6, produto.getIdProduto());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,6 +95,7 @@ public class ProdutoDAOImpl extends GenericDAO implements ProdutoDAO {
 				produto.setDescricao(rs.getString("descricao"));
 				produto.setCodigo(rs.getString("codigo"));
 				produto.setQuantidade(rs.getInt("quantidade"));
+				produto.setValor(rs.getFloat("valor"));
 				return produto;
 			} else {
 				return null;
@@ -124,6 +127,7 @@ public class ProdutoDAOImpl extends GenericDAO implements ProdutoDAO {
 				produto.setDescricao(rs.getString("descricao"));
 				produto.setCodigo(rs.getString("codigo"));
 				produto.setQuantidade(rs.getInt("quantidade"));
+				produto.setValor(rs.getFloat("valor"));
 				produtos.add(produto);
 			}
 

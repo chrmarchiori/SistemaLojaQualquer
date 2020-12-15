@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GenericDAO {
-	static String USER = "SYSDBA";
-	static String PASSWORD = "masterkey";
+	static String USER = "root";
+	static String PASSWORD = "root";
 
 	protected Connection getConnection() throws SQLException {
 		String urlJDBC = "jdbc:mysql://localhost:3306/";

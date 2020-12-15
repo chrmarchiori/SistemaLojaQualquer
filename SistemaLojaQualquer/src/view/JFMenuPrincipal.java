@@ -10,12 +10,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class JFMenuPrincipal extends JFrame {
@@ -76,6 +74,19 @@ public class JFMenuPrincipal extends JFrame {
 		btnClientes.setBackground(Color.WHITE);
 		btnClientes.setBounds(52, 105, 188, 62);
 		contentPane.add(btnClientes);
+		
+		JButton btnProdutos = new JButton("Produtos");
+		btnProdutos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFListaProdutos().run();
+			}
+		});
+		btnProdutos.setToolTipText("");
+		btnProdutos.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnProdutos.setBorderPainted(false);
+		btnProdutos.setBackground(Color.WHITE);
+		btnProdutos.setBounds(52, 182, 188, 62);
+		contentPane.add(btnProdutos);
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
