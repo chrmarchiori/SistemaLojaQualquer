@@ -61,7 +61,7 @@ public class JFMenuPrincipal extends JFrame {
 		btnUsuarios.setBackground(Color.WHITE);
 		btnUsuarios.setBounds(52, 26, 188, 62);
 		contentPane.add(btnUsuarios);
-		
+
 		JButton btnClientes = new JButton("Clientes");
 		btnClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -74,7 +74,7 @@ public class JFMenuPrincipal extends JFrame {
 		btnClientes.setBackground(Color.WHITE);
 		btnClientes.setBounds(52, 105, 188, 62);
 		contentPane.add(btnClientes);
-		
+
 		JButton btnProdutos = new JButton("Produtos");
 		btnProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -87,6 +87,19 @@ public class JFMenuPrincipal extends JFrame {
 		btnProdutos.setBackground(Color.WHITE);
 		btnProdutos.setBounds(52, 182, 188, 62);
 		contentPane.add(btnProdutos);
+
+		JButton btnPedidos = new JButton("Pedidos");
+		btnPedidos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new JFListaPedidos().run();
+			}
+		});
+		btnPedidos.setToolTipText("");
+		btnPedidos.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnPedidos.setBorderPainted(false);
+		btnPedidos.setBackground(Color.WHITE);
+		btnPedidos.setBounds(52, 258, 188, 62);
+		contentPane.add(btnPedidos);
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

@@ -1,2 +1,5 @@
 /UsuarioController.class
 /ClienteController.class
+/ProdutoController.class
+/PedidoController.class
+/ItemPedidoController.class

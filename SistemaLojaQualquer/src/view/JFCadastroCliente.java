@@ -92,11 +92,7 @@ public class JFCadastroCliente extends JFrame {
 		idadeCliente = new JTextField();
 		idadeCliente.setBounds(49, 197, 223, 31);
 		panel.add(idadeCliente);
-		
-		idadeCliente = new JTextField();
-		idadeCliente.setBounds(49, 197, 223, 31);
-		panel.add(idadeCliente);
-		
+
 		JLabel lblIdade = new JLabel("Idade");
 		lblIdade.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblIdade.setBounds(49, 175, 96, 20);
@@ -107,7 +103,7 @@ public class JFCadastroCliente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Cliente cliente = new Cliente();
 				if (clienteEditar != null) {
-					cliente.setIdCliente(clienteEditar .getIdCliente());
+					cliente.setIdCliente(clienteEditar.getIdCliente());
 				}
 				cliente.setNome(nomeCliente.getText());
 				cliente.setEndereco(enderecoCliente.getText());

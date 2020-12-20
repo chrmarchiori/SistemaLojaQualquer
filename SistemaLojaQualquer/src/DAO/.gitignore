@@ -3,3 +3,9 @@
 /UsuarioDAOImpl.class
 /ClienteDAO.class
 /ClienteDAOImpl.class
+/ProdutoDAO.class
+/ProdutoDAOImpl.class
+/PedidoDAO.class
+/PedidoDAOImpl.class
+/ItemPedidoDAO.class
+/ItemPedidoDAOImpl.class
